@@ -33,8 +33,8 @@ public class MathGame implements Minigame {
 			answer = firstNumber - secondNumber;
 			sign = '-';
 		} if (g == 2) {
-			firstNumber = rnd.nextInt(10) + 1;
-			secondNumber = rnd.nextInt(10) + 1;
+			firstNumber = rnd.nextInt(20) + 1;
+			secondNumber = rnd.nextInt(20) + 1;
 			answer = firstNumber * secondNumber;
 			sign = 'x';
 		} if (g == 3) {
@@ -49,8 +49,8 @@ public class MathGame implements Minigame {
 	}
 	
 	public String Handle(String s) {
-		// TODO Auto-generated method stub
 		
+		String result = "";
 		int a;
 		try {
 			a = Integer.parseInt(s);
@@ -61,12 +61,14 @@ public class MathGame implements Minigame {
 		if (!(a == answer)) {
 			totalProblems++;
 			setUpGame();
-			return "Wrong, " + s + " is not the answer. The answer was " + lastAnswer + ". \n" + Run();
-		} else if (!(a == answer)) 
+			result = "Wrong, " + s + " is not the answer. The answer was " + lastAnswer + ". \n" + Run();
+		} else if ((a == answer)) {
 			totalProblems++;
 			correctProblems++;
 			setUpGame();
-			return "Correct, " + s + " is the answer.\n" + Run();
+			result = "Correct, " + s + " is the answer.\n" + Run();
+		}
+		return result;
 		}
 	
 	
@@ -74,7 +76,7 @@ public class MathGame implements Minigame {
 		if (t <= 0) {
 			return "Error finding the percent."; 
 		} else {
-			double r = (double)c / ((double)t+1);
+			double r = (double)c / (double)t;
 			double y = r * 100;
 			return "" + Math.round(y) + "% of the problems were answered correct.";
 		}
